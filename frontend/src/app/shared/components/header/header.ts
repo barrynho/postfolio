@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LucideCode } from '@lucide/angular';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, LucideCode],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { LucideUser, LucideBook, LucideGraduationCap, LucideAward, LucideMonitor } from '@lucide/angular';
+import { CommonModule } from '@angular/common';
+import { LucideUser, LucideBook, LucideGraduationCap, LucideAward } from '@lucide/angular';
 
 @Component({
   selector: 'app-about',
-  imports: [LucideUser, LucideBook, LucideGraduationCap, LucideAward, LucideMonitor],
+  imports: [CommonModule, LucideUser, LucideBook, LucideGraduationCap, LucideAward],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })

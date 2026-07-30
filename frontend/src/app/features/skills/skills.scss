@@ -112,18 +112,30 @@
 
 // Responsive
 @media (max-width: 768px) {
+  .skills-section {
+    padding: 3rem 5%;
+  }
+
+  .skills-header {
+    margin-bottom: 2rem;
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
+
   .skills-grid-circular {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
   }
 
   .skill-circle-card {
     .skill-content-inner {
       h4 {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
-      i {
-        font-size: 2rem !important;
+      span {
+        font-size: 0.75rem;
       }
     }
   }

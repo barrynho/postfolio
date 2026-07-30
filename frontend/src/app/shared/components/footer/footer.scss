@@ -22,3 +22,15 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 5%;
+    
+    .footer-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+}

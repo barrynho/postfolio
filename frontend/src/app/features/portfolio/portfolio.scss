@@ -141,6 +141,18 @@
 }
 
 @media (max-width: 768px) {
+  .portfolio-section {
+    padding: 3rem 5%;
+  }
+
+  .portfolio-header {
+    margin-bottom: 2rem;
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }

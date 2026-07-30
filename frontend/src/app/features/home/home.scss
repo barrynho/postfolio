@@ -190,16 +190,70 @@
   .hero-section {
     flex-direction: column;
     text-align: center;
-    padding-top: 2rem;
+    padding-top: 3rem;
   }
 
   .hero-content {
+    .hero-title {
+      font-size: 2.8rem;
+    }
     .hero-buttons, .hero-technologies .tech-icons {
       justify-content: center;
     }
   }
 
   .hero-visuals {
-    margin-top: 4rem;
+    margin-top: 3rem;
+    min-height: 400px;
+    
+    .profile-image {
+      width: 280px;
+      height: 280px;
+    }
+    
+    .circle-backdrop {
+      width: 350px;
+      height: 350px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 2rem;
+  }
+  
+  .hero-content {
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    .hero-description {
+      font-size: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-buttons {
+      flex-direction: column;
+      gap: 1rem;
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  .hero-visuals {
+    margin-top: 2rem;
+    min-height: 300px;
+    
+    .profile-image {
+      width: 220px;
+      height: 220px;
+    }
+    
+    .circle-backdrop {
+      width: 280px;
+      height: 280px;
+    }
   }
 }
