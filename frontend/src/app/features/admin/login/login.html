@@ -1,50 +1,77 @@
 <section class="login-section">
   <div class="login-container" data-aos="fade-up">
     <div class="login-header">
-      <div class="logo-icon-wrapper">
-        <i class="bi bi-shield-lock"></i>
+      <div class="bear-mascot" 
+           [class.eyes-closed]="isPasswordFocused" 
+           [class.is-sad]="isError" 
+           [class.is-happy]="isSuccess">
+        <div class="bear-ear left"></div>
+        <div class="bear-ear right"></div>
+        <div class="bear-face">
+          <div class="bear-eye left">
+            <div class="pupil"></div>
+          </div>
+          <div class="bear-eye right">
+            <div class="pupil"></div>
+          </div>
+          <div class="bear-muzzle">
+            <div class="bear-nose"></div>
+            <div class="bear-mouth"></div>
+          </div>
+        </div>
+        <div class="bear-paw left"></div>
+        <div class="bear-paw right"></div>
       </div>
-      <h2>Administration</h2>
-      <p>Connectez-vous pour gérer vos projets</p>
+      <h2>{{ 'LOGIN.SUCCESS' | translate }}</h2>
     </div>
 
     <form class="login-form" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="email">Adresse Email</label>
+        <label for="email">{{ 'LOGIN.EMAIL' | translate }}</label>
         <div class="input-wrapper">
-          <i class="bi bi-envelope"></i>
+          <i class="bi bi-envelope left-icon"></i>
           <input 
             type="email" 
             id="email" 
             name="email"
             [(ngModel)]="email" 
+            (input)="resetBearState()"
+            (focus)="resetBearState()"
             required 
-            placeholder="moustekakawi@gmail.com"
           >
         </div>
       </div>
 
       <div class="form-group">
-        <label for="password">Mot de passe</label>
+        <label for="password">{{ 'LOGIN.PASSWORD' | translate }}</label>
         <div class="input-wrapper">
-          <i class="bi bi-key"></i>
+          <i class="bi bi-key left-icon"></i>
           <input 
-            type="password" 
+            [type]="showPassword ? 'text' : 'password'" 
             id="password" 
             name="password"
             [(ngModel)]="password" 
+            (focus)="isPasswordFocused = true; resetBearState()"
+            (blur)="isPasswordFocused = false"
+            (input)="resetBearState()"
             required 
-            placeholder="••••••••"
           >
+          <button type="button" class="btn-toggle-password" (click)="togglePasswordVisibility()">
+            <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+          </button>
         </div>
       </div>
 
-      <div class="error-message" *ngIf="errorMessage">
-        <i class="bi bi-exclamation-circle"></i> {{ errorMessage }}
+      <div class="error-message" *ngIf="errorMessage" style="font-size: 1.1rem; text-align: center;">
+        {{ errorMessage | translate }}
+      </div>
+      
+      <div class="success-message" *ngIf="isSuccess" style="font-size: 1.1rem; text-align: center; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.2); margin-bottom: 1.5rem;">
+        {{ 'LOGIN.SUCCESS' | translate }}
       </div>
 
       <button type="submit" class="btn-primary btn-login-submit" [disabled]="isLoading">
-        <span *ngIf="!isLoading">Se connecter</span>
+        <span *ngIf="!isLoading">{{ 'LOGIN.SUBMIT' | translate }}</span>
         <span *ngIf="isLoading" class="loader"></span>
       </button>
     </form>

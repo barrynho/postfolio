@@ -29,14 +29,15 @@
     font-size: 2.5rem;
     font-weight: 600;
     margin: 0;
-    color: $text-color;
+    color: var(--text-color);
   }
 }
 
 .skills-grid-circular {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 2rem;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -45,7 +46,7 @@
   position: relative;
   width: 100%;
   padding-bottom: 100%;
-  background: rgba($secondary-color, 0.3);
+  background: rgba(var(--secondary-color-rgb), 0.3);
   border-radius: 50%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -67,7 +68,7 @@
 
   .circle-bg {
     fill: none;
-    stroke: rgba($text-color, 0.05);
+    stroke: rgba(var(--text-color-rgb), 0.05);
     stroke-width: 2.5;
   }
 
@@ -88,17 +89,26 @@
     text-align: center;
     width: 80%;
 
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
     h4 {
       margin: 0;
       font-size: 1rem;
       font-weight: 600;
-      color: $text-color;
+      color: var(--text-color);
       margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     span {
       font-size: 0.85rem;
-      color: rgba($text-color, 0.6);
+      color: rgba(var(--text-color-rgb), 0.6);
       font-weight: 500;
     }
   }
@@ -111,6 +121,13 @@
 }
 
 // Responsive
+@media (max-width: 992px) {
+  .skills-grid-circular {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .skills-section {
     padding: 3rem 5%;
@@ -125,17 +142,52 @@
   }
 
   .skills-grid-circular {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   .skill-circle-card {
     .skill-content-inner {
+      .skill-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.25rem;
+      }
       h4 {
         font-size: 0.85rem;
       }
       span {
         font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-section {
+    padding: 2rem 2%;
+  }
+
+  .skills-grid-circular {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .skill-circle-card {
+    border: 1px solid rgba($primary-color, 0.15);
+    
+    .skill-content-inner {
+      width: 85%;
+      
+      .skill-icon {
+        font-size: 1.25rem;
+        margin-bottom: 0.1rem;
+      }
+      h4 {
+        font-size: 0.65rem;
+        margin-bottom: 0.1rem;
+      }
+      span {
+        font-size: 0.6rem;
       }
     }
   }

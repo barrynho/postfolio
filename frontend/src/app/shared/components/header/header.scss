@@ -39,7 +39,7 @@
   .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
-    color: $text-color;
+    color: var(--text-color);
     letter-spacing: -0.5px;
     margin-left: 0.25rem;
 
@@ -53,32 +53,50 @@
   display: none;
   background: none;
   border: none;
-  color: $text-color;
+  color: var(--text-color);
   font-size: 2rem;
   cursor: pointer;
   z-index: 1001;
 }
 
-.mobile-actions {
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desktop-hidden {
+  display: none !important;
+}
+
+.menu-overlay {
   display: none;
 }
 
 .navigation {
   display: flex;
-  gap: 2rem;
   align-items: center;
 
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
   a {
-    color: rgba($text-color, 0.7);
+    color: rgba(var(--text-color-rgb), 0.7);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
     padding-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
     &:hover, &.active {
-      color: $text-color;
+      color: var(--text-color);
     }
 
     &.active::after {
@@ -113,7 +131,7 @@
   }
 
   .btn-login {
-    color: rgba($text-color, 0.7);
+    color: rgba(var(--text-color-rgb), 0.7);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
@@ -150,7 +168,7 @@
     top: 100%;
     right: 0;
     margin-top: 0.5rem;
-    background: $background-color;
+    background: var(--bg-color);
     border: 1px solid rgba($primary-color, 0.2);
     border-radius: 8px;
     padding: 0.5rem;
@@ -170,7 +188,7 @@
       align-items: center;
       gap: 0.75rem;
       padding: 0.75rem 1rem;
-      color: $text-color;
+      color: var(--text-color);
       text-decoration: none;
       border-radius: 6px;
       transition: background 0.2s;
@@ -194,57 +212,142 @@
   .desktop-only {
     display: none !important;
   }
+  
+  .desktop-hidden {
+    display: flex !important;
+  }
 
   .mobile-toggle {
     display: block;
+    transition: opacity 0.3s ease;
+    
+    &.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .menu-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   .navigation {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 280px;
     height: 100vh;
-    background-color: $background-color;
+    background-color: var(--bg-color);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-100%);
-    transition: all 0.3s ease-in-out;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
 
     &.is-open {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+      transform: translateX(0);
+    }
+    
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(var(--text-color-rgb), 0.1);
+      margin-bottom: 1rem;
+      
+      .drawer-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+      
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        cursor: pointer;
+      }
+    }
+
+    .nav-links {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      padding: 0 1rem;
     }
 
     a {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 1rem;
+      border-radius: 8px;
+      
+      &.active::after {
+        display: none;
+      }
+      
+      &.active {
+        background-color: rgba($primary-color, 0.1);
+        color: $primary-color;
+      }
+      
+      i {
+        font-size: 1.2rem;
+        width: 24px;
+        text-align: center;
+        color: rgba(var(--text-color-rgb), 0.6);
+      }
+      
+      &.active i {
+        color: $primary-color;
+      }
     }
 
     .mobile-actions {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
+      gap: 1rem;
+      margin-top: auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid rgba(var(--text-color-rgb), 0.1);
 
       .btn-login {
-        font-size: 1.25rem;
+        text-align: center;
+        padding: 0.75rem;
+        border: 1px solid rgba(var(--text-color-rgb), 0.2);
+        border-radius: 0.5rem;
+        font-weight: 600;
       }
 
       .btn-hire {
-        font-size: 1.25rem;
-        padding: 0.75rem 2rem;
+        text-align: center;
+        padding: 0.75rem;
         background-color: $primary-color;
         color: white;
         border-radius: 0.5rem;
         text-decoration: none;
+        font-weight: 600;
       }
     }
   }

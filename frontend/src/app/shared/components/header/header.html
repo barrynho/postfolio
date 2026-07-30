@@ -1,32 +1,70 @@
 <header class="header">
-  <a routerLink="/" class="logo logo-custom" (click)="isMenuOpen = false">
-    <div class="logo-icon-wrapper">
-      <span>B</span>
-    </div>
-    <span class="logo-text">arry<span class="dot">.</span></span>
-  </a>
+  <div class="header-left">
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen" [class.is-hidden]="isMenuOpen">
+      <i class="bi bi-list"></i>
+    </button>
 
-  <!-- Mobile Toggle Button -->
-  <button class="mobile-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
-    <i class="bi" [class.bi-list]="!isMenuOpen" [class.bi-x]="isMenuOpen"></i>
-  </button>
+    <a routerLink="/" class="logo logo-custom" (click)="isMenuOpen = false">
+      <div class="logo-icon-wrapper">
+        <span>B</span>
+      </div>
+      <span class="logo-text">arry<span class="dot">.</span></span>
+    </a>
+  </div>
+
+  <!-- Overlay that darkens the main page when menu is open -->
+  <div class="menu-overlay" [class.is-open]="isMenuOpen" (click)="isMenuOpen = false"></div>
 
   <nav class="navigation" [class.is-open]="isMenuOpen">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">Accueil</a>
-    <a routerLink="/about" routerLinkActive="active" (click)="isMenuOpen = false">À propos</a>
-    <a routerLink="/skills" routerLinkActive="active" (click)="isMenuOpen = false">Compétences</a>
-    <a routerLink="/portfolio" routerLinkActive="active" (click)="isMenuOpen = false">Projets</a>
-    <a routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">Contact</a>
+    <div class="drawer-header desktop-hidden">
+      <span class="drawer-title">Menu</span>
+      <button class="close-btn" (click)="toggleMenu()">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">
+        <i class="bi bi-house desktop-hidden"></i> {{ 'HEADER.HOME' | translate }}
+      </a>
+      <a routerLink="/about" routerLinkActive="active" (click)="isMenuOpen = false">
+        <i class="bi bi-person desktop-hidden"></i> {{ 'HEADER.ABOUT' | translate }}
+      </a>
+      <a routerLink="/skills" routerLinkActive="active" (click)="isMenuOpen = false">
+        <i class="bi bi-tools desktop-hidden"></i> {{ 'HEADER.SKILLS' | translate }}
+      </a>
+      <a routerLink="/portfolio" routerLinkActive="active" (click)="isMenuOpen = false">
+        <i class="bi bi-briefcase desktop-hidden"></i> {{ 'HEADER.PORTFOLIO' | translate }}
+      </a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">
+        <i class="bi bi-envelope desktop-hidden"></i> {{ 'HEADER.CONTACT' | translate }}
+      </a>
+    </div>
 
-    <div class="mobile-actions">
-      <a routerLink="/admin/login" class="btn-login" (click)="isMenuOpen = false">Se connecter</a>
-      <a href="https://wa.me/message/7PHJSVTLYRT4H1" target="_blank" class="btn-hire">Me contacter ↗</a>
+    <div class="mobile-actions desktop-hidden">
+      <div class="action-buttons-wrapper" style="display: flex; gap: 1rem; margin-bottom: 1rem; justify-content: center;">
+        <button class="btn-lang-toggle" (click)="switchLanguage()" style="background: transparent; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-color); font-weight: 600;">
+          {{ currentLang === 'fr' ? 'EN' : 'FR' }}
+        </button>
+        <button class="btn-theme-toggle" (click)="toggleTheme()" style="background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-color);">
+          <i class="bi" [ngClass]="isLightMode ? 'bi-moon-stars-fill' : 'bi-sun-fill'"></i>
+        </button>
+      </div>
+      <a routerLink="/admin/login" class="btn-login" (click)="isMenuOpen = false">{{ 'HEADER.LOGIN' | translate }}</a>
+      <a href="https://wa.me/message/7PHJSVTLYRT4H1" target="_blank" class="btn-hire">{{ 'HEADER.HIRE_ME' | translate }}</a>
     </div>
   </nav>
 
   <div class="action-container contact-dropdown-container desktop-only">
-    <a routerLink="/admin/login" class="btn-login">Se connecter</a>
-    <button class="btn-hire contact-toggle">Me contacter ↗</button>
+    <button class="btn-lang-toggle" (click)="switchLanguage()" style="background: transparent; border: none; font-size: 1rem; cursor: pointer; color: var(--text-color); font-weight: 600; margin-right: 1rem; font-family: 'Poppins', sans-serif;">
+      {{ currentLang === 'fr' ? 'EN' : 'FR' }}
+    </button>
+    <button class="btn-theme-toggle" (click)="toggleTheme()" style="background: transparent; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-color); margin-right: 1rem;" [title]="'HEADER.THEME' | translate">
+      <i class="bi" [ngClass]="isLightMode ? 'bi-moon-stars-fill' : 'bi-sun-fill'"></i>
+    </button>
+    <a routerLink="/admin/login" class="btn-login">{{ 'HEADER.LOGIN' | translate }}</a>
+    <button class="btn-hire contact-toggle">{{ 'HEADER.HIRE_ME' | translate }}</button>
     <div class="contact-dropdown-menu">
       <a href="https://wa.me/message/7PHJSVTLYRT4H1" target="_blank">
         <i class="bi bi-whatsapp"></i> WhatsApp
@@ -37,3 +75,4 @@
     </div>
   </div>
 </header>
+

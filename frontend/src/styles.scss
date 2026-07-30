@@ -15,12 +15,36 @@ html {
   );
 }
 
+:root {
+  --bg-color: #0f172a;
+  --bg-color-rgb: 15, 23, 42;
+  --text-color: #f8fafc;
+  --text-color-rgb: 248, 250, 252;
+  --surface-color: #1e293b;
+  --surface-color-rgb: 30, 41, 59;
+  --secondary-color: #1e293b;
+  --secondary-color-rgb: 30, 41, 59;
+}
+
+body.light-theme {
+  --bg-color: #f8fafc;
+  --bg-color-rgb: 248, 250, 252;
+  --text-color: #0f172a;
+  --text-color-rgb: 15, 23, 42;
+  --surface-color: #ffffff;
+  --surface-color-rgb: 255, 255, 255;
+  --secondary-color: #e2e8f0;
+  --secondary-color-rgb: 226, 232, 240;
+  color-scheme: light;
+}
+
 body {
   color-scheme: dark;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   // Custom colors for the dark theme
-  background-color: $background-color;
-  color: $text-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Poppins', sans-serif;
 
   // Reset the user agent margin.
@@ -31,8 +55,8 @@ body {
 
 /* Global utility classes */
 .text-primary { color: $primary-color; }
-.text-secondary { color: $secondary-color; }
+.text-secondary { color: var(--secondary-color); }
 .text-accent { color: $accent-color; }
 .bg-primary { background-color: $primary-color; }
-.bg-secondary { background-color: $secondary-color; }
+.bg-secondary { background-color: var(--secondary-color); }
 .bg-accent { background-color: $accent-color; }

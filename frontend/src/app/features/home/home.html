@@ -1,29 +1,28 @@
 <section class="hero-section">
   <div class="hero-content">
-    <div class="badge">DÉVELOPPEUR WEB & MOBILE</div>
+    <div class="badge">{{ 'HOME.BADGE' | translate }}</div>
     
     <h1 class="hero-title">
-      Bonjour, je suis <span class="text-primary">Barry</span><br/>
-      MOUNGUENGUI IBINGA.
+      {{ 'HOME.GREETING' | translate }} <span class="text-primary">{{ 'HOME.NAME' | translate }}</span>
     </h1>
     
     <p class="hero-description">
-      Je suis un développeur passionné par la création d'expériences numériques exceptionnelles avec les technologies modernes.
+      {{ 'HOME.DESCRIPTION' | translate }}
     </p>
 
     <div class="hero-buttons">
         <a routerLink="/portfolio" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">
-          Voir les projets
+          {{ 'HOME.VIEW_PROJECTS' | translate }}
           <svg lucideArrowUpRight class="icon-sm"></svg>
         </a>
-        <a href="/assets/cv.png" download="CV_Mounguengui_Ibinga.png" class="btn btn-outline" data-aos="fade-up" data-aos-delay="300">
-          Télécharger le CV
+        <a [href]="cvUrl" download="CV_Mounguengui_Ibinga.pdf" target="_blank" class="btn btn-outline" data-aos="fade-up" data-aos-delay="300">
+          {{ 'HOME.DOWNLOAD_CV' | translate }}
           <svg lucideDownload class="icon-sm"></svg>
         </a>
       </div>
 
     <div class="hero-technologies">
-      <span class="tech-title">TECHNOLOGIES QUE J'UTILISE</span>
+      <span class="tech-title">{{ 'HOME.TECH_TITLE' | translate }}</span>
       <div class="tech-icons">
         <!-- First set -->
         <i class="devicon-html5-plain colored"></i>

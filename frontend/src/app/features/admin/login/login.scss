@@ -59,7 +59,7 @@
 }
 
 .login-container {
-  background: rgba($surface-color, 0.65);
+  background: rgba(var(--surface-color-rgb), 0.65);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(white, 0.08);
@@ -80,41 +80,163 @@
   text-align: center;
   margin-bottom: 3rem;
 
-  .logo-icon-wrapper {
-    background: linear-gradient(135deg, $primary-color, $accent-color);
-    width: 72px;
-    height: 72px;
-    border-radius: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    animation: glowPulse 3s infinite;
+  .bear-mascot {
     position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    z-index: 10;
     
-    // Inner glowing ring
-    &::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, $primary-color, $accent-color);
-      z-index: -1;
-      opacity: 0.5;
-      filter: blur(10px);
+    .bear-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #8c6239;
+      border-radius: 50%;
+      box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2);
+      z-index: 2;
+      transition: transform 0.3s ease;
     }
     
-    i {
-      color: white;
-      font-size: 2.2rem;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    .bear-ear {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: #724c29;
+      border-radius: 50%;
+      top: -5px;
+      z-index: 1;
+      
+      &.left { left: -5px; }
+      &.right { right: -5px; }
+    }
+    
+    .bear-eye {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background-color: #fff;
+      border-radius: 50%;
+      top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      
+      &.left { left: 24px; }
+      &.right { right: 24px; }
+      
+      .pupil {
+        width: 10px;
+        height: 10px;
+        background-color: #111;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+    }
+    
+    .bear-muzzle {
+      position: absolute;
+      width: 55px;
+      height: 45px;
+      background-color: #e6c8a6;
+      border-radius: 50%;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .bear-nose {
+      width: 18px;
+      height: 12px;
+      background-color: #111;
+      border-radius: 50%;
+      margin-top: 6px;
+    }
+    
+    .bear-mouth {
+      width: 20px;
+      height: 10px;
+      border-bottom: 2px solid #111;
+      border-radius: 0 0 10px 10px;
+      margin-top: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    .bear-paw {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      background-color: #724c29;
+      border-radius: 50%;
+      bottom: -15px;
+      z-index: 3;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      
+      &.left { left: 15px; }
+      &.right { right: 15px; }
+    }
+    
+    // STATES
+    &.eyes-closed {
+      .bear-paw.left { transform: translateY(-70px) translateX(12px); }
+      .bear-paw.right { transform: translateY(-70px) translateX(-12px); }
+      
+      .bear-eye {
+        height: 4px;
+        background-color: transparent;
+        border-top: 4px solid #111;
+        border-radius: 50% 50% 0 0;
+        top: 48px;
+        .pupil { opacity: 0; }
+      }
+    }
+    
+    &.is-happy {
+      .bear-mouth {
+        width: 24px;
+        height: 16px;
+        border-bottom: 4px solid #111;
+        background-color: #d85a5a;
+        margin-top: 0;
+      }
+      
+      .bear-paw.left { transform: translateY(-30px) translateX(-30px) rotate(-45deg); }
+      .bear-paw.right { transform: translateY(-30px) translateX(30px) rotate(45deg); }
+      
+      .bear-eye {
+        border-top: 4px solid #111;
+        background-color: transparent;
+        border-radius: 50% 50% 0 0;
+        .pupil { opacity: 0; }
+      }
+    }
+    
+    &.is-sad {
+      .bear-face { transform: translateY(10px); }
+      .bear-ear { transform: translateY(5px); }
+      
+      .bear-mouth {
+        border-bottom: none;
+        border-top: 2px solid #111;
+        border-radius: 10px 10px 0 0;
+        margin-top: 8px;
+        height: 5px;
+      }
+      
+      .bear-eye {
+        .pupil { transform: translateY(3px); }
+      }
     }
   }
 
   h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: $text-color;
+    color: var(--text-color);
     margin-bottom: 0.75rem;
     background: linear-gradient(to right, #fff, rgba(255,255,255,0.7));
     -webkit-background-clip: text;
@@ -123,7 +245,7 @@
   }
 
   p {
-    color: rgba($text-color, 0.6);
+    color: rgba(var(--text-color-rgb), 0.6);
     font-size: 1.05rem;
     font-weight: 400;
   }
@@ -141,7 +263,7 @@
   gap: 0.6rem;
 
   label {
-    color: rgba($text-color, 0.85);
+    color: rgba(var(--text-color-rgb), 0.85);
     font-size: 0.95rem;
     font-weight: 500;
     margin-left: 0.25rem;
@@ -166,10 +288,10 @@
       transition: opacity 0.3s ease;
     }
 
-    i {
+    i.left-icon {
       position: absolute;
       left: 1.25rem;
-      color: rgba($text-color, 0.4);
+      color: rgba(var(--text-color-rgb), 0.4);
       font-size: 1.25rem;
       transition: color 0.3s ease, transform 0.3s ease;
       z-index: 1;
@@ -177,11 +299,11 @@
 
     input {
       width: 100%;
-      background: rgba($surface-color, 0.8);
+      background: rgba(var(--surface-color-rgb), 0.8);
       border: 1px solid rgba(white, 0.1);
       border-radius: 0.75rem;
-      padding: 1.1rem 1.1rem 1.1rem 3.25rem;
-      color: $text-color;
+      padding: 1.1rem 3.25rem; // Padding for both left and right icons
+      color: var(--text-color);
       font-size: 1.05rem;
       transition: all 0.3s ease;
       font-family: 'Inter', sans-serif;
@@ -194,14 +316,45 @@
         box-shadow: 0 0 0 4px rgba($primary-color, 0.15), inset 0 2px 4px rgba(0,0,0,0.1);
       }
 
-      &:focus + i, &:focus ~ i {
+      &:focus + i.left-icon, &:focus ~ i.left-icon {
         color: $accent-color;
         transform: scale(1.1);
       }
 
       &::placeholder {
-        color: rgba($text-color, 0.25);
+        color: rgba(var(--text-color-rgb), 0.25);
         font-weight: 300;
+      }
+    }
+    
+    .btn-toggle-password {
+      position: absolute;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: rgba(var(--text-color-rgb), 0.4);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease, transform 0.3s ease;
+      z-index: 2;
+
+      &:hover {
+        color: $accent-color;
+        transform: scale(1.1);
+      }
+      
+      &:focus {
+        outline: none;
+      }
+
+      i {
+        // Reset absolute positioning for this specific icon
+        position: static;
+        left: auto;
       }
     }
     
@@ -210,7 +363,7 @@
       opacity: 1;
     }
     
-    &:focus-within i {
+    &:focus-within i.left-icon {
       color: $accent-color;
     }
   }
@@ -266,7 +419,7 @@
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background: $surface-color;
+    background: var(--surface-color);
     border: 1px solid rgba(white, 0.1);
     box-shadow: none;
   }
@@ -316,4 +469,66 @@
 @keyframes rotation {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .login-section {
+    padding: 1rem;
+    min-height: calc(100vh - 80px);
+  }
+
+  .login-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-header {
+    margin-bottom: 2rem;
+
+    .bear-mascot {
+      width: 90px;
+      height: 90px;
+      
+      .bear-eye {
+        width: 16px;
+        height: 16px;
+        top: 30px;
+        
+        &.left { left: 18px; }
+        &.right { right: 18px; }
+        
+        .pupil {
+          width: 7px;
+          height: 7px;
+        }
+      }
+      
+      .bear-muzzle {
+        width: 40px;
+        height: 33px;
+        bottom: 12px;
+      }
+      
+      .bear-nose {
+        width: 14px;
+        height: 9px;
+      }
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .form-group .input-wrapper input {
+    padding: 0.9rem 2.8rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-login-submit {
+    padding: 0.9rem;
+    height: 50px;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
 }

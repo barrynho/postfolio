@@ -1,0 +1,102 @@
+{
+  "HEADER": {
+    "HOME": "Accueil",
+    "ABOUT": "À propos",
+    "SKILLS": "Compétences",
+    "PORTFOLIO": "Projets",
+    "CONTACT": "Contact",
+    "LOGIN": "Se connecter",
+    "HIRE_ME": "Me contacter ↗",
+    "THEME": "Thème",
+    "LANGUAGE": "Langue"
+  },
+  "HOME": {
+    "BADGE": "DÉVELOPPEUR WEB & MOBILE",
+    "GREETING": "Bonjour, je suis",
+    "NAME": "Barry MOUNGUENGUI IBINGA",
+    "DESCRIPTION": "Je suis un développeur passionné par la création d'expériences numériques exceptionnelles avec les technologies modernes.",
+    "VIEW_PROJECTS": "Voir les projets",
+    "DOWNLOAD_CV": "Télécharger le CV",
+    "TECH_TITLE": "TECHNOLOGIES QUE J'UTILISE"
+  },
+  "ABOUT": {
+    "BADGE": "À PROPOS DE MOI & PARCOURS",
+    "TITLE": "Mon parcours académique",
+    "SUBTITLE": "Découvrez mon évolution de l'école primaire jusqu'à mon diplôme en génie informatique.",
+    "LEARN_MORE": "En savoir plus sur moi",
+    "CEP_TITLE": "CEP",
+    "CEP_DESC": "Certificat d'Études Primaires",
+    "BEPC_TITLE": "Obtention du BEPC",
+    "BEPC_DESC": "Brevet d'Études du Premier Cycle",
+    "BAC_TITLE": "Obtention du BAC",
+    "BAC_DESC": "Baccalauréat",
+    "DTS_TITLE": "DTS en Génie Informatique",
+    "DTS_DESC": "Diplôme de Technicien Supérieur (en cours d'obtention)"
+  },
+  "SKILLS": {
+    "BADGE": "MES COMPÉTENCES",
+    "TITLE": "Expertise technique",
+    "SUBTITLE": "Je travaille constamment à améliorer mes compétences et à apprendre de nouvelles technologies pour créer de meilleures solutions."
+  },
+  "PORTFOLIO": {
+    "BADGE": "PROJETS RÉCENTS",
+    "TITLE": "Quelques-unes de mes réalisations",
+    "VIEW_PROJECT": "Voir le projet",
+    "LOADING": "Chargement de vos projets..."
+  },
+  "CONTACT": {
+    "BADGE": "TRAVAILLONS ENSEMBLE",
+    "TITLE": "Vous avez un projet en tête ?",
+    "SUBTITLE": "Je suis toujours ouvert à discuter de nouveaux projets et opportunités. Créons quelque chose d'incroyable ensemble !",
+    "CONTACT_ME": "Me Contacter",
+    "TESTIMONIAL": "\"Barry est un développeur exceptionnel qui livre un travail de haute qualité dans les temps. Son souci du détail et ses compétences en résolution de problèmes sont remarquables.\"",
+    "TESTIMONIAL_AUTHOR": "Sarah Johnson",
+    "TESTIMONIAL_ROLE": "CEO, TechStart",
+    "FOLLOW_ME": "SUIVEZ-MOI"
+  },
+  "LOGIN": {
+    "TITLE": "Administration",
+    "SUBTITLE": "Connectez-vous pour gérer vos projets",
+    "EMAIL": "Adresse Email",
+    "PASSWORD": "Mot de passe",
+    "SUBMIT": "Se connecter",
+    "ERROR": "Désolé vous n'avez pas accès",
+    "SUCCESS": "Bienvenue Monsieur !",
+    "REQUIRED": "Veuillez remplir tous les champs."
+  },
+  "DASHBOARD": {
+    "TITLE": "Admin Panel",
+    "PROJECTS": "Projets",
+    "MY_CV": "Mon CV",
+    "BACK_TO_SITE": "Retour au site",
+    "LOGOUT": "Déconnexion",
+    "MANAGE_PROJECTS": "Gestion des Projets",
+    "NEW_PROJECT": "Nouveau Projet",
+    "ADD_PROJECT": "Ajouter un projet",
+    "EDIT_PROJECT": "Modifier le projet",
+    "FORM_TITLE": "Titre du projet",
+    "FORM_URL": "Lien du projet (URL)",
+    "FORM_DESC": "Description",
+    "FORM_IMAGE": "Image du projet",
+    "OPTIONAL": "optionnel",
+    "CANCEL": "Annuler",
+    "SAVE": "Enregistrer",
+    "SAVING": "Enregistrement...",
+    "UPDATE": "Mettre à jour",
+    "UPDATING": "Mise à jour...",
+    "EDIT": "Modifier",
+    "DELETE": "Supprimer",
+    "NO_PROJECTS": "Aucun projet",
+    "NO_PROJECTS_DESC": "Vos projets apparaîtront ici",
+    "MANAGE_CV": "Gestion du CV",
+    "UPLOAD_CV": "Uploader un nouveau CV",
+    "UPLOAD_CV_DESC": "Sélectionnez un fichier PDF pour remplacer votre CV actuel.",
+    "SELECT_PDF": "Sélectionner un fichier PDF",
+    "CURRENT_CV": "CV Actuel",
+    "VIEW": "Voir",
+    "NO_CV": "Aucun CV n'est actuellement disponible."
+  },
+  "FOOTER": {
+    "RIGHTS": "Tous droits réservés."
+  }
+}

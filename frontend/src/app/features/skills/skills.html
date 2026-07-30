@@ -1,8 +1,8 @@
 <section class="skills-section" id="skills">
   <div class="skills-header">
-    <span class="badge">MES COMPÉTENCES</span>
-    <h2>Expertise technique</h2>
-    <p>Je travaille constamment à améliorer mes compétences et à apprendre de nouvelles technologies pour créer de meilleures solutions.</p>
+    <span class="badge">{{ 'SKILLS.BADGE' | translate }}</span>
+    <h2>{{ 'SKILLS.TITLE' | translate }}</h2>
+    <p>{{ 'SKILLS.SUBTITLE' | translate }}</p>
   </div>
 
   <div class="skills-grid-circular">
@@ -22,7 +22,7 @@
           />
         </svg>
         <div class="skill-content-inner">
-          <i [class]="skill.iconClass" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+          <i [class]="skill.iconClass" class="skill-icon"></i>
           <h4>{{skill.name}}</h4>
           <span>{{skill.percentage}}%</span>
         </div>

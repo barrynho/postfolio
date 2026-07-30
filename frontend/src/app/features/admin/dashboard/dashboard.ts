@@ -2,16 +2,21 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { SupabaseService } from '../../../core/services/supabase.service';
 import { ProjectsApiService } from '../../../core/services/projects.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, TranslatePipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })
 export class Dashboard implements OnInit {
+  activeTab = 'projects';
+  cvFile: File | null = null;
+  isUploadingCV = false;
+  cvUrl: string | null = null;
   showAddForm = false;
   isSubmitting = false;
   isEditing = false;
@@ -34,6 +39,52 @@ export class Dashboard implements OnInit {
 
   async ngOnInit() {
     await this.loadProjects();
+    this.cvUrl = this.supabaseService.getCVUrl();
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  onCVFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file && file.type === 'application/pdf') {
+      this.cvFile = file;
+    } else {
+      alert('Veuillez sélectionner un fichier PDF.');
+      event.target.value = ''; // Reset file input
+    }
+  }
+
+  async uploadCV() {
+    if (!this.cvFile) return;
+    this.isUploadingCV = true;
+    try {
+      await this.supabaseService.uploadCV(this.cvFile);
+      this.cvUrl = this.supabaseService.getCVUrl();
+      // append query param to bypass cache
+      this.cvUrl = `${this.cvUrl}?t=${new Date().getTime()}`;
+      alert('CV mis à jour avec succès !');
+      this.cvFile = null;
+    } catch (error: any) {
+      alert('Erreur: ' + error.message);
+    } finally {
+      this.isUploadingCV = false;
+      this.cdr.detectChanges();
+    }
+  }
+
+  async deleteCV() {
+    if (confirm('Voulez-vous vraiment supprimer votre CV ?')) {
+      try {
+        await this.supabaseService.deleteCV();
+        this.cvUrl = null;
+        alert('CV supprimé avec succès !');
+      } catch (e: any) {
+        alert('Erreur lors de la suppression: ' + e.message);
+      }
+      this.cdr.detectChanges();
+    }
   }
 
   async loadProjects() {
@@ -107,7 +158,8 @@ export class Dashboard implements OnInit {
     try {
       let imageUrl = null;
       if (this.newProject.image) {
-        imageUrl = await this.projectsService.uploadImage(this.newProject.image);
+        const uploadResult = await this.projectsService.uploadImage(this.newProject.image);
+        imageUrl = uploadResult.url;
       }
 
       const projectData: any = {

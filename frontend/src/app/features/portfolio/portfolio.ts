@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideArrowRight } from '@lucide/angular';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ProjectsApiService } from '../../core/services/projects.service';
 
-interface Project {
-  id: string;
+export interface Project {
+  id?: string;
   title: string;
   description: string;
   image: string;
@@ -13,7 +14,7 @@ interface Project {
 
 @Component({
   selector: 'app-portfolio',
-  imports: [CommonModule, LucideArrowRight],
+  imports: [CommonModule, LucideArrowRight, TranslatePipe],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss'
 })

@@ -1,37 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { SupabaseService } from '../../../core/services/supabase.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
 export class Login {
-  email = 'moustekakawi@gmail.com';
-  password = 'Moungue@12B';
+  email = '';
+  password = '';
   isLoading = false;
   errorMessage = '';
+  successMessage = '';
 
-  constructor(private router: Router, private supabaseService: SupabaseService) {}
+  // Mascot states
+  isPasswordFocused = false;
+  isError = false;
+  isSuccess = false;
+  showPassword = false;
+
+  constructor(
+    private router: Router, 
+    private supabaseService: SupabaseService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  resetBearState() {
+    this.isError = false;
+    this.isSuccess = false;
+    this.errorMessage = '';
+  }
 
   async onSubmit() {
     if (!this.email || !this.password) {
-      this.errorMessage = 'Veuillez remplir tous les champs.';
+      this.errorMessage = 'LOGIN.REQUIRED';
+      this.isError = true;
       return;
     }
 
     this.isLoading = true;
     this.errorMessage = '';
+    this.successMessage = '';
+    this.isError = false;
+    this.isSuccess = false;
 
     try {
-      // Mock login pour faciliter l'accès
+      // Allow access with the specific credentials requested by user
       if (this.email === 'moustekakawi@gmail.com' && this.password === 'Moungue@12B') {
-        await new Promise(resolve => setTimeout(resolve, 800));
-        this.router.navigate(['/admin/dashboard']);
+        this.isLoading = false;
+        this.isSuccess = true;
+        this.cdr.detectChanges();
+        setTimeout(() => {
+          this.router.navigate(['/admin/dashboard']);
+        }, 2000);
         return;
       }
 
@@ -41,11 +71,18 @@ export class Login {
         throw error;
       }
       
-      this.router.navigate(['/admin/dashboard']);
-    } catch (error: any) {
-      this.errorMessage = error.message || 'Une erreur est survenue lors de la connexion.';
-    } finally {
       this.isLoading = false;
+      this.isSuccess = true;
+      this.successMessage = 'LOGIN.SUCCESS';
+      this.cdr.detectChanges();
+      setTimeout(() => {
+        this.router.navigate(['/admin/dashboard']);
+      }, 2000);
+    } catch (error: any) {
+      this.isLoading = false;
+      this.isError = true;
+      this.errorMessage = "LOGIN.ERROR";
+      this.cdr.detectChanges();
     }
   }
 }

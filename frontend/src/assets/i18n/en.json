@@ -1,0 +1,102 @@
+{
+  "HEADER": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "SKILLS": "Skills",
+    "PORTFOLIO": "Projects",
+    "CONTACT": "Contact",
+    "LOGIN": "Login",
+    "HIRE_ME": "Hire me ↗",
+    "THEME": "Theme",
+    "LANGUAGE": "Language"
+  },
+  "HOME": {
+    "BADGE": "WEB & MOBILE DEVELOPER",
+    "GREETING": "Hello, I am",
+    "NAME": "Barry MOUNGUENGUI IBINGA",
+    "DESCRIPTION": "I am a passionate developer creating exceptional digital experiences using modern technologies.",
+    "VIEW_PROJECTS": "View Projects",
+    "DOWNLOAD_CV": "Download CV",
+    "TECH_TITLE": "TECHNOLOGIES I USE"
+  },
+  "ABOUT": {
+    "BADGE": "ABOUT ME & BACKGROUND",
+    "TITLE": "My academic background",
+    "SUBTITLE": "Discover my journey from primary school to my computer engineering degree.",
+    "LEARN_MORE": "Learn more about me",
+    "CEP_TITLE": "CEP",
+    "CEP_DESC": "Primary School Certificate",
+    "BEPC_TITLE": "BEPC Graduation",
+    "BEPC_DESC": "Undergraduate Certificate",
+    "BAC_TITLE": "BAC Graduation",
+    "BAC_DESC": "High School Diploma",
+    "DTS_TITLE": "DTS in Computer Engineering",
+    "DTS_DESC": "Higher Technician Diploma (in progress)"
+  },
+  "SKILLS": {
+    "BADGE": "MY SKILLS",
+    "TITLE": "Technical Expertise",
+    "SUBTITLE": "I constantly work on improving my skills and learning new technologies to build better solutions."
+  },
+  "PORTFOLIO": {
+    "BADGE": "RECENT PROJECTS",
+    "TITLE": "Some of my work",
+    "VIEW_PROJECT": "View Project",
+    "LOADING": "Loading your projects..."
+  },
+  "CONTACT": {
+    "BADGE": "LET'S WORK TOGETHER",
+    "TITLE": "Do you have a project in mind?",
+    "SUBTITLE": "I am always open to discussing new projects and opportunities. Let's build something amazing together!",
+    "CONTACT_ME": "Contact Me",
+    "TESTIMONIAL": "\"Barry is an exceptional developer who delivers high-quality work on time. His attention to detail and problem-solving skills are outstanding.\"",
+    "TESTIMONIAL_AUTHOR": "Sarah Johnson",
+    "TESTIMONIAL_ROLE": "CEO, TechStart",
+    "FOLLOW_ME": "FOLLOW ME"
+  },
+  "LOGIN": {
+    "TITLE": "Administration",
+    "SUBTITLE": "Log in to manage your projects",
+    "EMAIL": "Email Address",
+    "PASSWORD": "Password",
+    "SUBMIT": "Log In",
+    "ERROR": "Sorry, you don't have access",
+    "SUCCESS": "Welcome Sir!",
+    "REQUIRED": "Please fill in all fields."
+  },
+  "DASHBOARD": {
+    "TITLE": "Admin Panel",
+    "PROJECTS": "Projects",
+    "MY_CV": "My CV",
+    "BACK_TO_SITE": "Back to site",
+    "LOGOUT": "Log Out",
+    "MANAGE_PROJECTS": "Manage Projects",
+    "NEW_PROJECT": "New Project",
+    "ADD_PROJECT": "Add a project",
+    "EDIT_PROJECT": "Edit project",
+    "FORM_TITLE": "Project Title",
+    "FORM_URL": "Project URL (Demo)",
+    "FORM_DESC": "Description",
+    "FORM_IMAGE": "Project Image",
+    "OPTIONAL": "optional",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "SAVING": "Saving...",
+    "UPDATE": "Update",
+    "UPDATING": "Updating...",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "NO_PROJECTS": "No projects",
+    "NO_PROJECTS_DESC": "Your projects will appear here",
+    "MANAGE_CV": "Manage CV",
+    "UPLOAD_CV": "Upload a new CV",
+    "UPLOAD_CV_DESC": "Select a PDF file to replace your current CV.",
+    "SELECT_PDF": "Select a PDF file",
+    "CURRENT_CV": "Current CV",
+    "VIEW": "View",
+    "NO_CV": "No CV is currently available."
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved."
+  }
+}

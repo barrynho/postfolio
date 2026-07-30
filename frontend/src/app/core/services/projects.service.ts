@@ -43,7 +43,7 @@ export class ProjectsApiService {
     const filePath = `project-images/${fileName}`;
 
     const { error: uploadError } = await this.supabase.client.storage
-      .from('images')
+      .from('portfolio')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -51,7 +51,7 @@ export class ProjectsApiService {
     }
 
     const { data } = this.supabase.client.storage
-      .from('images')
+      .from('portfolio')
       .getPublicUrl(filePath);
 
     return { url: data.publicUrl };

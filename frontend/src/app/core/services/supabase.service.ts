@@ -33,4 +33,29 @@ export class SupabaseService {
   async getUser() {
     return this.supabase.auth.getUser();
   }
+
+  // --- CV Management ---
+  async uploadCV(file: File) {
+    return this.supabase.storage
+      .from('portfolio')
+      .upload('public/cv.pdf', file, {
+        upsert: true,
+        cacheControl: '3600',
+      });
+  }
+
+  async deleteCV() {
+    return this.supabase.storage
+      .from('portfolio')
+      .remove(['public/cv.pdf']);
+  }
+
+  getCVUrl(): string {
+    const { data } = this.supabase.storage
+      .from('portfolio')
+      .getPublicUrl('public/cv.pdf', {
+        download: 'CV_Mounguengui_Ibinga.pdf'
+      });
+    return data.publicUrl;
+  }
 }
