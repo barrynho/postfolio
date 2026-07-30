@@ -1,0 +1,85 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Admin Panel</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-item">
+        <i class="bi bi-grid"></i> Projets
+      </a>
+      <a routerLink="/" class="nav-item">
+        <i class="bi bi-arrow-left"></i> Retour au site
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn-logout" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Déconnexion
+      </button>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="main-header">
+      <h1>Gestion des Projets</h1>
+      <button class="btn-primary btn-add" (click)="toggleAddForm()">
+        <i class="bi bi-plus-lg"></i> Nouveau Projet
+      </button>
+    </header>
+
+    <div class="add-project-form" *ngIf="showAddForm">
+      <h3>{{ isEditing ? 'Modifier le projet' : 'Ajouter un projet' }}</h3>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="title">Titre du projet</label>
+            <input type="text" id="title" name="title" [(ngModel)]="newProject.title" required>
+          </div>
+          <div class="form-group">
+            <label for="demoUrl">Lien du projet (URL)</label>
+            <input type="url" id="demoUrl" name="demoUrl" [(ngModel)]="newProject.demoUrl" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" [(ngModel)]="newProject.description" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group file-upload-group">
+          <label for="image">Image du projet <span *ngIf="isEditing">(optionnel)</span></label>
+          <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*" [required]="!isEditing">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-outline" (click)="toggleAddForm()">Annuler</button>
+          <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">{{ isEditing ? 'Mettre à jour' : 'Enregistrer' }}</span>
+            <span *ngIf="isSubmitting">{{ isEditing ? 'Mise à jour...' : 'Enregistrement...' }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card-admin" *ngFor="let project of projects">
+        <div class="admin-project-img-wrapper">
+          <img [src]="project.image" alt="Project image" class="admin-project-img">
+        </div>
+        <div class="admin-project-info">
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.demoUrl }}</p>
+          <div class="admin-project-actions" style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <button class="btn-outline" style="padding: 0.25rem 0.75rem; border-color: #8b5cf6; color: #8b5cf6;" (click)="startEdit(project)">Modifier</button>
+            <button class="btn-outline" style="padding: 0.25rem 0.75rem; border-color: #ef4444; color: #ef4444;" (click)="deleteProject(project.id)">Supprimer</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="empty-state" *ngIf="projects.length === 0">
+        <i class="bi bi-folder2-open"></i>
+        <h3>Aucun projet</h3>
+        <p>Vos projets apparaîtront ici</p>
+      </div>
+    </div>
+  </main>
+</div>

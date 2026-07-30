@@ -1,0 +1,24 @@
+@use '../../../../variables' as *;
+
+.footer {
+  margin-top: auto;
+  padding: 2rem 5%;
+  border-top: 1px solid rgba($text-color, 0.1);
+  background-color: transparent;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba($text-color, 0.6);
+    font-size: 0.85rem;
+
+    p {
+      margin: 0;
+    }
+
+    .heart {
+      color: #ef4444; // Red heart
+    }
+  }
+}

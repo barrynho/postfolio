@@ -1,0 +1,30 @@
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-header">
+    <span class="badge">PROJETS RÉCENTS</span>
+    <h2>Quelques-unes de mes réalisations</h2>
+  </div>
+
+  <div class="projects-grid" *ngIf="!isLoading">
+    @for (project of projects; track project.id) {
+      <div class="project-card">
+        <div class="project-id">{{project.id?.substring(0, 5)}}</div>
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.title" />
+        </div>
+        <div class="project-content">
+          <h3>{{project.title}}</h3>
+          <p>{{project.description}}</p>
+          <a [href]="project.demoUrl" class="project-link" target="_blank">
+            Voir le projet
+            <svg lucideArrowRight class="icon-sm"></svg>
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="loading-state" *ngIf="isLoading" style="text-align: center; padding: 4rem;">
+    <div class="loader" style="border: 3px solid rgba(139, 92, 246, 0.3); border-bottom-color: #8b5cf6; border-radius: 50%; width: 40px; height: 40px; display: inline-block; animation: rotation 1s linear infinite;"></div>
+    <p style="margin-top: 1rem; color: rgba(255,255,255,0.7);">Chargement de vos projets...</p>
+  </div>
+</section>

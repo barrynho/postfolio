@@ -1,0 +1,32 @@
+<section class="skills-section" id="skills">
+  <div class="skills-header">
+    <span class="badge">MES COMPÉTENCES</span>
+    <h2>Expertise technique</h2>
+    <p>Je travaille constamment à améliorer mes compétences et à apprendre de nouvelles technologies pour créer de meilleures solutions.</p>
+  </div>
+
+  <div class="skills-grid-circular">
+    @for (skill of skills; track skill.name) {
+      <div class="skill-circle-card" data-aos="fade-up">
+        <svg class="circular-chart" viewBox="0 0 36 36">
+          <path class="circle-bg"
+            d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+          <path class="circle"
+            [attr.stroke-dasharray]="skill.percentage + ', 100'"
+            d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+        </svg>
+        <div class="skill-content-inner">
+          <i [class]="skill.iconClass" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+          <h4>{{skill.name}}</h4>
+          <span>{{skill.percentage}}%</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>

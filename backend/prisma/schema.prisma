@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model Project {
+  id           String   @id @default(uuid())
+  title        String
+  description  String
+  content      String?
+  image        String?
+  githubUrl    String?
+  demoUrl      String?
+  date         DateTime?
+  categoryId   String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  technologies Technology[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique // e.g. "Web", "Mobile", "API"
+  projects Project[]
+}
+
+model Technology {
+  id       String    @id @default(uuid())
+  name     String    @unique // e.g. "Angular", "NestJS"
+  icon     String?
+  projects Project[]
+}
+
+model Skill {
+  id         String   @id @default(uuid())
+  name       String
+  level      String?  // e.g. "Advanced", "Intermediate"
+  percentage Int?     // e.g. 95
+  icon       String?
+  category   String?  // e.g. "Front-end", "Back-end"
+  experience Int?     // Years of experience
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  company     String
+  role        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  isCurrent   Boolean  @default(false)
+  type        String?  // e.g. "Freelance", "Full-time"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(uuid())
+  school      String
+  degree      String
+  field       String?
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  client    String
+  role      String?
+  company   String?
+  content   String
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Blog {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String
+  image     String?
+  published Boolean  @default(false)
+  author    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

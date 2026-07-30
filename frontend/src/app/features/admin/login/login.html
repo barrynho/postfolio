@@ -1,0 +1,52 @@
+<section class="login-section">
+  <div class="login-container" data-aos="fade-up">
+    <div class="login-header">
+      <div class="logo-icon-wrapper">
+        <i class="bi bi-shield-lock"></i>
+      </div>
+      <h2>Administration</h2>
+      <p>Connectez-vous pour gérer vos projets</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Adresse Email</label>
+        <div class="input-wrapper">
+          <i class="bi bi-envelope"></i>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            [(ngModel)]="email" 
+            required 
+            placeholder="moustekakawi@gmail.com"
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <div class="input-wrapper">
+          <i class="bi bi-key"></i>
+          <input 
+            type="password" 
+            id="password" 
+            name="password"
+            [(ngModel)]="password" 
+            required 
+            placeholder="••••••••"
+          >
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        <i class="bi bi-exclamation-circle"></i> {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-primary btn-login-submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Se connecter</span>
+        <span *ngIf="isLoading" class="loader"></span>
+      </button>
+    </form>
+  </div>
+</section>

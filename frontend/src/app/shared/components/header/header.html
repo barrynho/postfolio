@@ -1,0 +1,39 @@
+<header class="header">
+  <a routerLink="/" class="logo logo-custom" (click)="isMenuOpen = false">
+    <div class="logo-icon-wrapper">
+      <span>B</span>
+    </div>
+    <span class="logo-text">arry<span class="dot">.</span></span>
+  </a>
+
+  <!-- Mobile Toggle Button -->
+  <button class="mobile-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">
+    <i class="bi" [class.bi-list]="!isMenuOpen" [class.bi-x]="isMenuOpen"></i>
+  </button>
+
+  <nav class="navigation" [class.is-open]="isMenuOpen">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">Accueil</a>
+    <a routerLink="/about" routerLinkActive="active" (click)="isMenuOpen = false">À propos</a>
+    <a routerLink="/skills" routerLinkActive="active" (click)="isMenuOpen = false">Compétences</a>
+    <a routerLink="/portfolio" routerLinkActive="active" (click)="isMenuOpen = false">Projets</a>
+    <a routerLink="/contact" routerLinkActive="active" (click)="isMenuOpen = false">Contact</a>
+
+    <div class="mobile-actions">
+      <a routerLink="/admin/login" class="btn-login" (click)="isMenuOpen = false">Se connecter</a>
+      <a href="https://wa.me/message/7PHJSVTLYRT4H1" target="_blank" class="btn-hire">Me contacter ↗</a>
+    </div>
+  </nav>
+
+  <div class="action-container contact-dropdown-container desktop-only">
+    <a routerLink="/admin/login" class="btn-login">Se connecter</a>
+    <button class="btn-hire contact-toggle">Me contacter ↗</button>
+    <div class="contact-dropdown-menu">
+      <a href="https://wa.me/message/7PHJSVTLYRT4H1" target="_blank">
+        <i class="bi bi-whatsapp"></i> WhatsApp
+      </a>
+      <a href="mailto:moustekakawi@gmail.com">
+        <i class="bi bi-envelope"></i> Email
+      </a>
+    </div>
+  </div>
+</header>

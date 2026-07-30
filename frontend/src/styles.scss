@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+@use 'variables' as *;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Poppins,
+      density: 0,
+    )
+  );
+}
+
+body {
+  color-scheme: dark;
+
+  // Custom colors for the dark theme
+  background-color: $background-color;
+  color: $text-color;
+  font-family: 'Poppins', sans-serif;
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Global utility classes */
+.text-primary { color: $primary-color; }
+.text-secondary { color: $secondary-color; }
+.text-accent { color: $accent-color; }
+.bg-primary { background-color: $primary-color; }
+.bg-secondary { background-color: $secondary-color; }
+.bg-accent { background-color: $accent-color; }
